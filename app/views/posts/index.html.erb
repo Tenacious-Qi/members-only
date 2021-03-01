@@ -1,3 +1,13 @@
 <% @posts.each do |post| %>
-  <p><%= post.content %></p>
+  <% date = post.created_at %>
+  <ul>
+    <li>
+      <% if member_signed_in? %>
+        <p>Post Author: <%= post.member.name %> | <span>posted on <%= date.strftime("%F at %H:%M ") %> </span></p>
+      <% else %>
+        <p><em>Author name visible to Members only.</em></p>
+      <% end %>
+      <p><%= post.content %></p>
+    </li>
+  </ul>
 <% end %>

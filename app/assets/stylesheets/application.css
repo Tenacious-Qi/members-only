@@ -14,14 +14,44 @@
  *= require_self
  */
 
- .warning {
-   color: orange;
+ body {
+  font-family: Arial, Helvetica, sans-serif;
  }
 
- .success {
-   color: green;
+ .header {
+   display: inline-block;
+   border-bottom: 2px solid black;
+   padding-bottom: 2px;
+   margin: 10px;
  }
 
- .failure {
-   color: red;
- }
+.error-box {
+  margin: 10px 0px;
+  max-width: 500px;
+  border: 2px solid red;
+}
+
+.text-box {
+  height: 300px;
+  width: 300px;
+}
+
+#submit-button {
+  margin: 10px 0px;
+  display: block;
+}
+
+.links {
+  margin: 10px 0px;
+}
+
+.current-member-username {
+  margin: 10px 0px;
+}
+
+.post-content {
+  padding: 10px;
+  border: solid 2px black;
+  border-radius: 10px;
+  max-width: 500px
+}

@@ -1,7 +1,6 @@
-
 <%= form_with(model: @post) do |form| %>
-  <%# <%= render 'devise/shared/error_messages', object: form.object %>
+  <%= render 'shared/error_messages', object: form.object %>
   
-  <%= form.text_area :content, placeholder: "Write a new post" %>
-  <%= form.submit "Submit" %>
+  <%= form.text_area :content, class: "text-box", placeholder: "Write a new post" %>
+  <%= form.submit "Submit", id: "submit-button" %>
 <% end %>

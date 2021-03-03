@@ -24,8 +24,16 @@
         <%= link_to "New Post", new_post_path %>
         <%= link_to "Logout", destroy_member_session_path, method: :delete %>
       <% else %>
-        <%= link_to "Login", new_member_session_path %>
-        <%= link_to "Sign Up", new_member_registration_path %>
+        <h1>Welcome to Members Only!</h1>
+        <div class="login-signup">
+        <% if current_page?(root_path) %>
+          <p>You can
+          <%= link_to "Login", new_member_session_path %>
+          or
+          <%= link_to "Sign Up", new_member_registration_path %>
+        <% end %>
+          </p>
+        </div>
       <% end %>
     </div>
     <%= yield %>

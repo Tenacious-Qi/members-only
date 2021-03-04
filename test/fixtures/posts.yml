@@ -1,7 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  content: MyText
+joepost:
+  content: 'Here is the first post.'
+  created_at: <%= 10.minutes.ago %>
+  member: joe
 
-two:
-  content: MyText
+zeuspost:
+  content: 'here is a different post.'
+  created_at: <%= 3.hours.ago %>
+  member: zeus

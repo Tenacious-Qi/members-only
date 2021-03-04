@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_member!, only: [:new, :create]
+  before_action :set_post, only: [:destroy]
 
   def index
     @posts = Post.all.order("created_at DESC")
@@ -19,15 +20,26 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
-    @post.destroy
+    # prevent deletion of another member's post unless logged in as that member
+    # delete link is hidden in view. This prevents @post deletions using curl requests
+    if correct_member
+      @post.destroy
+      flash[:success] = "Post deleted."
+    end
     redirect_to root_path
-    flash[:success] = "Post deleted."
   end
 
   private
 
     def post_params
       params.require(:post).permit(:content)
+    end
+
+    def set_post
+      @post = Post.find(params[:id])
+    end
+
+    def correct_member
+      current_member == @post.member
     end
 end

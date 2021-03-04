@@ -11,7 +11,8 @@
         <%= post.content %>
         <div>
           <% if current_member == post.member %>
-            <%= link_to "delete", post, method: :delete, 
+            <%= link_to "delete", post, method: :delete,
+                                        class: "delete-#{current_member.name}-post",
                                         data: {confirm: "Are you sure you want to delete this post?" } %>
           <% end %>
         </div>

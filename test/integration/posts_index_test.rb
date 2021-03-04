@@ -31,14 +31,20 @@ class PostsIndexTest < ActionDispatch::IntegrationTest
     assert_select 'a', { text: 'delete', count: 0}
   end
 
+  # practice using Capybara methods
   test "only signed in members can delete posts that belong to them" do
+    # sign in as Joe (can't delete Zeus' posts)
     sign_in(@member)
-    get posts_path
-    assert_select 'a.delete-Joe-post'
+    visit('posts#index')
+    assert page.has_xpath?("//a[@data-test-id='Joe-post']")
+    assert page.has_no_xpath?("//a[@data-test-id='Zeus-post']")
+
     sign_out(@member)
+
+    # sign in as Zeus (can't delete Joe's posts)
     sign_in(@other_member)
-    get posts_path
-    assert_select 'a.delete-Joe-post', { count: 0 }
-    assert_select 'a.delete-Zeus-post', { count: 1 }
+    visit('posts#index')
+    assert page.has_xpath?("//a[@data-test-id='Zeus-post']")
+    assert page.has_no_xpath?("//a[@data-test-id='Joe-post']")
   end
 end
